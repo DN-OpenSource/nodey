@@ -1,0 +1,61 @@
+project_name: nodey
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - darwin
+      - linux
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    binary: nodey
+
+archives:
+  - format: tar.gz
+    # this name template makes the archive name compatible with the standard brew formula naming
+    name_template: >-
+      {{ .ProjectName }}_{{ .Os }}_{{ .Arch }}
+    replacements:
+      darwin: Darwin
+      linux: Linux
+      windows: Windows
+      386: i386
+      amd64: x86_64
+
+checksum:
+  name_template: 'checksums.txt'
+
+snapshot:
+  name_template: "{{ .Tag }}-next"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+
+brews:
+  -
+    # GOAL: Installs to `dhirajnikam/homebrew-tap`
+    repository:
+      owner: dhirajnikam
+      name: homebrew-tap
+      token: "{{ .Env.GITHUB_TOKEN }}"
+
+    name: nodey
+    homepage: "https://github.com/dhirajnikam/nodey"
+    description: "AI-Powered Flowchart Architect for your Terminal"
+    license: "MIT"
+    
+    # dependencies:
+    #   - name: git
+    
+    install: |
+      bin.install "nodey"
