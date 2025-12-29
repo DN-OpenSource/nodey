@@ -42,6 +42,11 @@ go mod tidy
 go build -o nodey main.go
 ```
 
+### Install via Go
+```bash
+go install github.com/dhirajnikam/nodey@latest
+```
+
 ### Install via Homebrew (MacOS)
 *Once released to a tap:*
 ```bash
