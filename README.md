@@ -2,8 +2,6 @@
 
 **Nodey** is a terminal-based intelligent coding assistant that designs, validates, and generates beautiful, interactive flowcharts from natural language descriptions. It leverages a Multi-Agent AI System to ensure your workflows are logical, comprehensive, and visually stunning.
 
-![Nodey Demo](https://via.placeholder.com/800x400?text=Nodey+Terminal+Demo)
-
 ## 🚀 Features
 
 *   **Multi-Agent Intelligence**:
