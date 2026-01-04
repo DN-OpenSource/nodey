@@ -14,9 +14,9 @@ git push origin main
 
 # 3. Tag
 # 3. Tag
-echo "🏷️  Tagging v1.0.3..."
-git tag -a v1.0.3 -m "Release v1.0.3"
-git push origin v1.0.3
+echo "🏷️  Tagging v1.0.4..."
+git tag -a v1.0.4 -m "Release v1.0.4"
+git push origin v1.0.4
 
 # 4. Release
 echo "🚀 Running GoReleaser..."
