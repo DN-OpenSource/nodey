@@ -1,0 +1,199 @@
+{
+  "overview": {
+    "title": "Gender-Inclusive Conversation Style Flow",
+    "summary": "A practical, ethical flowchart for talking with individuals based on observable communication styles (DT, IR, HE, LC, FA). Prioritizes consent, respect, and adaptability without relying on gender stereotypes."
+  },
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "start",
+      "x": 100,
+      "y": 300,
+      "title": "Start",
+      "notes": "Entry point for a gender-inclusive communication flow based on observed styles."
+    },
+    {
+      "id": "n2",
+      "type": "trigger",
+      "x": 300,
+      "y": 300,
+      "title": "Conversation Initiated",
+      "notes": "Trigger: a conversation begins; observe initial signals and context."
+    },
+    {
+      "id": "n3",
+      "type": "decision",
+      "x": 500,
+      "y": 300,
+      "title": "DT? Direct/Task-focused",
+      "notes": "If yes, route to DT action; if no, proceed to next style check (IR)."
+    },
+    {
+      "id": "n4",
+      "type": "action",
+      "x": 700,
+      "y": 230,
+      "title": "DT - Direct/Task-focused",
+      "notes": "Be concise about purpose; offer concrete next steps; example: propose a specific next action."
+    },
+    {
+      "id": "n5",
+      "type": "decision",
+      "x": 500,
+      "y": 420,
+      "title": "IR? Indirect/Relationship-focused",
+      "notes": "If yes, route to IR action; if no, proceed to HE decision."
+    },
+    {
+      "id": "n6",
+      "type": "action",
+      "x": 700,
+      "y": 420,
+      "title": "IR - Indirect/Relationship-focused",
+      "notes": "Emphasize warmth, rapport-building; gradual sharing; focus on connection."
+    },
+    {
+      "id": "n7",
+      "type": "decision",
+      "x": 500,
+      "y": 540,
+      "title": "HE? High-context/Emotion-focused",
+      "notes": "If yes, route to HE action; if no, proceed to LC decision."
+    },
+    {
+      "id": "n8",
+      "type": "action",
+      "x": 700,
+      "y": 540,
+      "title": "HE - High-context/Emotion-focused",
+      "notes": "Attend to nonverbal cues; mirror tone; minimize explicit statements when appropriate."
+    },
+    {
+      "id": "n9",
+      "type": "decision",
+      "x": 500,
+      "y": 660,
+      "title": "LC? Low-context/Content-focused",
+      "notes": "If yes, route to LC action; if no, proceed to FA decision."
+    },
+    {
+      "id": "n10",
+      "type": "action",
+      "x": 700,
+      "y": 660,
+      "title": "LC - Low-context/Content-focused",
+      "notes": "Provide explicit details and straightforward options; avoid ambiguity."
+    },
+    {
+      "id": "n11",
+      "type": "decision",
+      "x": 500,
+      "y": 780,
+      "title": "FA? Flexible/Adaptive",
+      "notes": "If yes, route to FA action; if no, proceed to End."
+    },
+    {
+      "id": "n12",
+      "type": "action",
+      "x": 700,
+      "y": 780,
+      "title": "FA - Flexible/Adaptive",
+      "notes": "Start with neutral framing; adapt on cues and feedback in real time."
+    },
+    {
+      "id": "n13",
+      "type": "end",
+      "x": 900,
+      "y": 900,
+      "title": "End",
+      "notes": "Conclude interaction; reflect on style fit and potential follow-up."
+    }
+  ],
+  "connections": [
+    {
+      "from": "n1",
+      "to": "n2",
+      "type": "out"
+    },
+    {
+      "from": "n2",
+      "to": "n3",
+      "type": "out"
+    },
+    {
+      "from": "n3",
+      "to": "n4",
+      "type": "out"
+    },
+    {
+      "from": "n3",
+      "to": "n5",
+      "type": "out"
+    },
+    {
+      "from": "n4",
+      "to": "n13",
+      "type": "out"
+    },
+    {
+      "from": "n5",
+      "to": "n6",
+      "type": "out"
+    },
+    {
+      "from": "n5",
+      "to": "n7",
+      "type": "out"
+    },
+    {
+      "from": "n6",
+      "to": "n13",
+      "type": "out"
+    },
+    {
+      "from": "n7",
+      "to": "n8",
+      "type": "out"
+    },
+    {
+      "from": "n7",
+      "to": "n9",
+      "type": "out"
+    },
+    {
+      "from": "n8",
+      "to": "n13",
+      "type": "out"
+    },
+    {
+      "from": "n9",
+      "to": "n10",
+      "type": "out"
+    },
+    {
+      "from": "n9",
+      "to": "n11",
+      "type": "out"
+    },
+    {
+      "from": "n10",
+      "to": "n13",
+      "type": "out"
+    },
+    {
+      "from": "n11",
+      "to": "n12",
+      "type": "out"
+    },
+    {
+      "from": "n11",
+      "to": "n13",
+      "type": "out"
+    },
+    {
+      "from": "n12",
+      "to": "n13",
+      "type": "out"
+    }
+  ]
+}

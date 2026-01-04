@@ -10,14 +10,14 @@ import (
 	"time"
 
 	"github.com/charmbracelet/bubbles/spinner"
-	"github.com/charmbracelet/bubbles/textinput"
+	"github.com/charmbracelet/bubbles/textarea"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
 	"github.com/openai/openai-go/v3"
 	"github.com/openai/openai-go/v3/option"
 
-	"node/agents"
-	"node/generator"
+	"github.com/dhirajnikam/nodey/agents"
+	"github.com/dhirajnikam/nodey/generator"
 )
 
 // -- Styles --
@@ -63,7 +63,7 @@ type model struct {
 	spinner spinner.Model
 
 	// Input
-	textInput textinput.Model
+	textInput textarea.Model
 	prompt    string
 	history   []string // logs of what happened
 
@@ -95,11 +95,12 @@ type model struct {
 }
 
 func newModel() model {
-	ti := textinput.New()
-	ti.Placeholder = "Describe the flow you need (e.g. 'User Login Process')..."
+	ti := textarea.New()
+	ti.Placeholder = "Describe the flow you need (e.g. 'User Login Process')...\nPress Ctrl+S to submit."
 	ti.Focus()
-	ti.CharLimit = 300
-	ti.Width = 50
+	ti.CharLimit = 0 // No limit
+	ti.SetHeight(3)
+	ti.ShowLineNumbers = false
 
 	s := spinner.New()
 	s.Spinner = spinner.Dot
@@ -125,7 +126,7 @@ func newModel() model {
 }
 
 func (m model) Init() tea.Cmd {
-	return textinput.Blink
+	return textarea.Blink
 }
 
 func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
@@ -147,16 +148,19 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 		// Input Handling
 		if m.state == stateInput {
-			switch msg.Type {
-			case tea.KeyEnter:
+			switch msg.String() {
+			case "ctrl+s":
 				m.prompt = m.textInput.Value()
-				m.textInput.SetValue("")
+				if strings.TrimSpace(m.prompt) == "" {
+					return m, nil
+				}
+				m.textInput.Reset()
 				m.history = append(m.history, "User: "+m.prompt)
 				m.state = stateAnalyzing
 				return m, tea.Batch(m.spinner.Tick, analyzeCmd(m.client, m.prompt, m.history))
 
 			// Press Ctrl+L or some key to load history
-			case tea.KeyCtrlL:
+			case "ctrl+l":
 				files, err := getJSONFiles()
 				if err == nil && len(files) > 0 {
 					m.files = files
@@ -192,7 +196,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 						m.loadedFlow = &flow
 						m.history = append(m.history, fmt.Sprintf("System: Loaded %s. Enter changes below:", m.selectedFile))
 						m.state = stateInput
-						m.textInput.Placeholder = "What changes do you want to make?"
+						m.textInput.Placeholder = "What changes do you want to make?\nPress Ctrl+S to submit."
 						return m, nil
 					}
 				}
@@ -219,12 +223,15 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 		// Answering Questions Handling
 		if m.state == stateAnswering {
-			switch msg.Type {
-			case tea.KeyEnter:
+			switch msg.String() {
+			case "ctrl+s":
 				answer := m.textInput.Value()
+				if strings.TrimSpace(answer) == "" {
+					return m, nil
+				}
 				m.history = append(m.history, fmt.Sprintf("Q: %s\nA: %s", m.questions[m.currentQIndex], answer))
 				m.answers = append(m.answers, answer)
-				m.textInput.SetValue("")
+				m.textInput.Reset()
 
 				m.currentQIndex++
 				if m.currentQIndex >= len(m.questions) {
@@ -259,9 +266,9 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			m.questions = msg.Questions
 			m.currentQIndex = 0
 			m.state = stateAnswering
-			m.textInput.Placeholder = "Answer the question..."
+			m.textInput.Placeholder = "Answer the question...\nPress Ctrl+S to submit."
 			m.textInput.Focus()
-			return m, textinput.Blink
+			return m, textarea.Blink
 		} else {
 			m.state = stateInput // Go back to input
 			m.err = fmt.Errorf("Analyst rejected: %s", msg.Reason)
