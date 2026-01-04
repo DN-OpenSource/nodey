@@ -31,7 +31,7 @@
 
 ### Install via Homebrew
 ```bash
-brew tap dhirajnikam/tap
+brew tap DN-OpenSource/tap
 brew install nodey
 ```
 

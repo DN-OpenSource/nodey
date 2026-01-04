@@ -22,4 +22,4 @@ git push origin v1.0.6
 echo "🚀 Running GoReleaser..."
 goreleaser release --clean
 
-echo "✅ Done! Users can now run: brew tap dhirajnikam/tap && brew install nodey"
+echo "✅ Done! Users can now run: brew tap DN-OpenSource/tap && brew install nodey"
