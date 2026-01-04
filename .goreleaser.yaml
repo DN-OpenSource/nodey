@@ -36,12 +36,12 @@ brews:
   -
     # GOAL: Installs to `dhirajnikam/homebrew-tap`
     repository:
-      owner: dhirajnikam
+      owner: DN-OpenSource
       name: homebrew-tap
       token: "{{ .Env.GITHUB_TOKEN }}"
 
     name: nodey
-    homepage: "https://github.com/dhirajnikam/nodey"
+    homepage: "https://github.com/DN-OpenSource/nodey"
     description: "AI-Powered Flowchart Architect for your Terminal"
     license: "MIT"
     

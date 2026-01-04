@@ -16,8 +16,8 @@ import (
 	"github.com/openai/openai-go/v3"
 	"github.com/openai/openai-go/v3/option"
 
-	"github.com/dhirajnikam/nodey/agents"
-	"github.com/dhirajnikam/nodey/generator"
+	"github.com/DN-OpenSource/nodey/agents"
+	"github.com/DN-OpenSource/nodey/generator"
 )
 
 // -- Styles --

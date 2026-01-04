@@ -1,5 +1,4 @@
-module github.com/dhirajnikam/nodey
-
+module github.com/DN-OpenSource/nodey
 
 go 1.25.5
 
