@@ -13,9 +13,10 @@ echo "📦 Pushing code..."
 git push origin main
 
 # 3. Tag
-echo "🏷️  Tagging v1.0.0..."
-git tag -a v1.0.0 -m "Initial Release"
-git push origin v1.0.0
+# 3. Tag
+echo "🏷️  Tagging v1.0.3..."
+git tag -a v1.0.3 -m "Release v1.0.3"
+git push origin v1.0.3
 
 # 4. Release
 echo "🚀 Running GoReleaser..."
